@@ -568,7 +568,7 @@ class Plotter():
 
         #Pooling 1
         for i in range(16):
-            ax_layer_pool1 = detail_testing_widget.figure_pooling1.add_subplot(1, 4, (i+1)); ax_layer_pool1.imshow(detail_testing_widget.visual_layer[3](citra)[0][i], cmap=plot.cm.binary)
+            ax_layer_pool1 = detail_testing_widget.figure_pooling1.add_subplot(1, 16, (i+1)); ax_layer_pool1.imshow(detail_testing_widget.visual_layer[3](citra)[0][i], cmap=plot.cm.binary)
             ax_layer_pool1.set_axis_off()
 
         list_item_widget = QListWidgetItem(detail_testing_widget.list_result)
@@ -591,7 +591,7 @@ class Plotter():
 
         #Conv2
         for i in range(20):
-            ax_layer_conv2 = detail_testing_widget.figure_conv2.add_subplot(1, 8, (i+1)); ax_layer_conv2.imshow(detail_testing_widget.visual_layer[4](citra)[0][i], cmap=plot.cm.binary)
+            ax_layer_conv2 = detail_testing_widget.figure_conv2.add_subplot(1, 20, (i+1)); ax_layer_conv2.imshow(detail_testing_widget.visual_layer[4](citra)[0][i], cmap=plot.cm.binary)
             ax_layer_conv2.set_axis_off()
 
         list_item_widget = QListWidgetItem(detail_testing_widget.list_result)
@@ -601,7 +601,7 @@ class Plotter():
 
         #Pooling 2
         for i in range(20):
-            ax_layer_pool2 = detail_testing_widget.figure_pooling2.add_subplot(1, 8, (i+1)); ax_layer_pool2.imshow(detail_testing_widget.visual_layer[6](citra)[0][i], cmap=plot.cm.binary)
+            ax_layer_pool2 = detail_testing_widget.figure_pooling2.add_subplot(1, 20, (i+1)); ax_layer_pool2.imshow(detail_testing_widget.visual_layer[6](citra)[0][i], cmap=plot.cm.binary)
             ax_layer_pool2.set_axis_off()
 
         list_item_widget = QListWidgetItem(detail_testing_widget.list_result)
