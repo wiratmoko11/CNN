@@ -7,6 +7,7 @@ import pickle as cPickle
 
 from ConvModel import ConvModel
 from DetailValidate import DetailValidate
+from Utils import Utils
 
 
 class TestingDetailWidget(QWidget):
@@ -15,7 +16,7 @@ class TestingDetailWidget(QWidget):
 
     def __init__(self, parent, citra, true_label, dataset, file_bobot, model):
         super(TestingDetailWidget, self).__init__(parent)
-        print("asdasdasd");
+        self.utils = Utils()
         self.dataset = dataset
         self.init_ui_components()
         # self.init_ui_layout()
