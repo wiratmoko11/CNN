@@ -87,7 +87,7 @@ class TestingDetailWidget(QWidget):
         self.figure_softmax = Figure(); self.canvas_softmax = FigureCanvas(figure=self.figure_softmax)
         self.figure_output = Figure(); self.canvas_output = FigureCanvas(figure=self.figure_output)
 
-    def _component_model_2(self):
+    def _component_model_3(self):
         self.figure_input = Figure(); self.canvas_input = FigureCanvas(self.figure_input)
         self.figure_conv1 = Figure(); self.canvas_conv1 = FigureCanvas(figure=self.figure_conv1)
         self.figure_w1 = Figure(); self.canvas_w1 = FigureCanvas(figure=self.figure_w1)
@@ -211,13 +211,13 @@ class TestingDetailWidget(QWidget):
         self.params = cPickle.load(f)
         f.close()
         self.w1 = self.params[0]
-        # self.b1 = self.params[1]
+        self.b1 = self.utils.init_kernel((16,))
         self.w2 = self.params[1]
-        # self.b2 = self.params[3]
+        self.b2 = self.utils.init_kernel((20,))
         self.w3 = self.params[2]
-        # self.b3 = self.params[5]
+        self.b3 = self.utils.init_kernel((20,))
         self.w_output = self.params[3]
-        # self.b_output = self.params[7]
+        self.b_output = self.utils.init_kernel((10,))
 
     def load_bobot_3(self, file):
         f = open(file, 'rb')
