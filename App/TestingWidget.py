@@ -102,7 +102,7 @@ class TestingWidget(QWidget):
 
     def handle_list_click(self, item):
         print("CLick")
-        index_data = self.list_result.row(self.list_result.currentItem())
+        index_data = self.list_result.row(self.list_result.currentItem()) + 9800
         training_x, training_y, testing_x, testing_y = self.dataset.load_data_cifar10(5)
         self.citra = numpy.zeros((1, 3, 32, 32))
         self.citra[0] = testing_x[index_data]

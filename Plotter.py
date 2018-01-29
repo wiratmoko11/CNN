@@ -24,7 +24,7 @@ class Plotter():
             'truck'
         ]
 
-    def plot_training_model_1(self, x_batch, training_layout):
+    def plot_training_model_1(self, x_batch, training_layout, params):
 
         ax = training_layout.figure_input.add_subplot(111); ax.imshow(self.dataset.to_channel_last(x_batch[0], shape=(32,32,3)))
 
@@ -36,7 +36,7 @@ class Plotter():
         count_w1 = 1
         for i in range(training_layout.visual_layer[2].eval().shape[0]):
             for j in range(training_layout.visual_layer[2].eval().shape[1]):
-                ax_w1 = training_layout.figure_w1.add_subplot(training_layout.visual_layer[2].eval().shape[0], training_layout.visual_layer[2].eval().shape[1], count_w1); ax_w1.imshow(training_layout.visual_layer[2].eval()[i][j], cmap=plot.cm.binary)
+                ax_w1 = training_layout.figure_w1.add_subplot(training_layout.visual_layer[2].eval().shape[0], training_layout.visual_layer[2].eval().shape[1], count_w1); ax_w1.imshow(params[0].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w1.set_axis_off()
                 count_w1 = count_w1 + 1
 
@@ -49,7 +49,7 @@ class Plotter():
         count_w2 = 1
         for i in range(training_layout.visual_layer[5].eval().shape[0]):
             for j in range(training_layout.visual_layer[5].eval().shape[1]):
-                ax_w2 = training_layout.figure_w2.add_subplot(training_layout.visual_layer[5].eval().shape[0], training_layout.visual_layer[5].eval().shape[1], count_w2); ax_w2.imshow(training_layout.visual_layer[5].eval()[i][j], cmap=plot.cm.binary)
+                ax_w2 = training_layout.figure_w2.add_subplot(training_layout.visual_layer[5].eval().shape[0], training_layout.visual_layer[5].eval().shape[1], count_w2); ax_w2.imshow(params[2].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w2.set_axis_off()
                 count_w2 = count_w2 + 1
 
@@ -103,7 +103,7 @@ class Plotter():
         training_layout.canvas_softmax.draw()
 
 
-    def plot_training_model_2(self, x_batch, training_layout):
+    def plot_training_model_2(self, x_batch, training_layout, params):
         print("Plot 2")
         """
 
@@ -118,7 +118,7 @@ class Plotter():
         count_w1 = 1
         for i in range(training_layout.visual_layer[2].eval().shape[0]):
             for j in range(training_layout.visual_layer[2].eval().shape[1]):
-                ax_w1 = training_layout.figure_w1.add_subplot(training_layout.visual_layer[2].eval().shape[0], training_layout.visual_layer[2].eval().shape[1], count_w1); ax_w1.imshow(training_layout.visual_layer[2].eval()[i][j], cmap=plot.cm.binary)
+                ax_w1 = training_layout.figure_w1.add_subplot(training_layout.visual_layer[2].eval().shape[0], training_layout.visual_layer[2].eval().shape[1], count_w1); ax_w1.imshow(params[0].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w1.set_axis_off()
                 count_w1 = count_w1 + 1
         # Conv1
@@ -133,9 +133,9 @@ class Plotter():
 
         #W2
         count_w2 = 1
-        for i in range(training_layout.visual_layer[2].eval().shape[0]):
-            for j in range(training_layout.visual_layer[2].eval().shape[1]):
-                ax_w2 = training_layout.figure_w2.add_subplot(training_layout.visual_layer[5].eval().shape[0], training_layout.visual_layer[5].eval().shape[1], count_w2); ax_w2.imshow(training_layout.visual_layer[5].eval()[i][j], cmap=plot.cm.binary)
+        for i in range(params[2].get_value().shape[0]):
+            for j in range(params[2].get_value().shape[1]):
+                ax_w2 = training_layout.figure_w2.add_subplot(params[2].get_value().shape[0], params[2].get_value().shape[1], count_w2); ax_w2.imshow(params[2].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w2.set_axis_off()
                 count_w2 = count_w2 + 1
 
@@ -151,9 +151,9 @@ class Plotter():
 
         #W3
         count_w3 = 1
-        for i in range(training_layout.visual_layer[2].eval().shape[0]):
-            for j in range(training_layout.visual_layer[2].eval().shape[1]):
-                ax_w3 = training_layout.figure_w3.add_subplot(training_layout.visual_layer[8].eval().shape[0], training_layout.visual_layer[8].eval().shape[1], count_w3); ax_w2.imshow(training_layout.visual_layer[8].eval()[i][j], cmap=plot.cm.binary)
+        for i in range(params[4].get_value().shape[0]):
+            for j in range(params[4].get_value().shape[1]):
+                ax_w3 = training_layout.figure_w3.add_subplot(params[4].get_value().shape[0], params[4].get_value().shape[1], count_w3); ax_w3.imshow(params[4].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w3.set_axis_off()
                 count_w3 = count_w3 + 1
 
@@ -191,17 +191,17 @@ class Plotter():
         training_layout.canvas_fc1.draw()
         training_layout.canvas_softmax.draw()
 
-    def plot_training_model_3(self, x_batch, training_layout):
+    def plot_training_model_3(self, x_batch, training_layout, params):
         ax_input = training_layout.figure_input.add_subplot(111); ax_input.imshow(self.dataset.to_channel_last(x_batch[0], shape=(32, 32, 3)))
         ax_input.set_axis_off()
 
-        training_layout.canvas_input.draw()
+
 
         #W1
         count_w1 = 1
-        for i in range(training_layout.visual_layer[2].eval().shape[0]):
-            for j in range(training_layout.visual_layer[2].eval().shape[1]):
-                ax_w1 = training_layout.figure_w1.add_subplot(training_layout.visual_layer[2].eval().shape[0], training_layout.visual_layer[2].eval().shape[1], count_w1); ax_w1.imshow(training_layout.visual_layer[2].eval()[i][j], cmap=plot.cm.binary)
+        for i in range(params[0].get_value().shape[0]):
+            for j in range(params[0].get_value().shape[1]):
+                ax_w1 = training_layout.figure_w1.add_subplot(params[0].get_value().shape[0], params[0].get_value().shape[1], count_w1); ax_w1.imshow(params[0].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w1.set_axis_off()
                 count_w1 = count_w1 + 1
 
@@ -217,9 +217,9 @@ class Plotter():
 
         #W2
         count_w2 = 1
-        for i in range(training_layout.visual_layer[5].eval().shape[0]):
-            for j in range(training_layout.visual_layer[5].eval().shape[1]):
-                ax_w2 = training_layout.figure_w2.add_subplot(training_layout.visual_layer[5].eval().shape[0], training_layout.visual_layer[5].eval().shape[1], count_w2); ax_w2.imshow(training_layout.visual_layer[5].eval()[i][j], cmap=plot.cm.binary)
+        for i in range(params[2].get_value().shape[0]):
+            for j in range(params[2].get_value().shape[1]):
+                ax_w2 = training_layout.figure_w2.add_subplot(params[2].get_value().shape[0], params[2].get_value().shape[1], count_w2); ax_w2.imshow(params[2].get_value()[i][j], cmap=plot.cm.binary)
                 ax_w2.set_axis_off()
                 count_w2 = count_w2 + 1
 
@@ -237,8 +237,10 @@ class Plotter():
 
         fc1 = numpy.zeros((1, 1280))
         fc1[0] = training_layout.visual_layer[7](x_batch)[0]
+        print(fc1.shape)
         ax_fc1 = training_layout.figure_fc1.add_subplot(111); ax_fc1.imshow(fc1, cmap=plot.cm.binary)
         ax_fc1.set_axis_off()
+        print(fc1)
 
         fc2 = numpy.zeros((1, 128))
         fc2[0] = training_layout.visual_layer[8](x_batch)[0]
@@ -249,6 +251,17 @@ class Plotter():
         softmax[0] = training_layout.visual_layer[10](x_batch)[0]
         print(softmax.shape)
         ax_layer_softmax = training_layout.figure_softmax.add_subplot(111); ax_layer_softmax.imshow(softmax, cmap=plot.cm.binary)
+
+        training_layout.canvas_input.draw()
+        training_layout.canvas_w1.draw()
+        training_layout.canvas_conv1.draw()
+        training_layout.canvas_pooling1.draw()
+        training_layout.canvas_w2.draw()
+        training_layout.canvas_conv2.draw()
+        training_layout.canvas_pooling2.draw()
+        training_layout.canvas_fc1.draw()
+        training_layout.canvas_fc2.draw()
+        training_layout.canvas_softmax.draw()
 
 
     def plot_testing(self, x_batch, predict, list_widget):
